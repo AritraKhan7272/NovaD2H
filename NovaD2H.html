@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaD2H — India's Premium D2H Service | CEO Aritra Khan</title>
+    <style>
+        :root {
+            --bg-deep: #030712;
+            --bg-primary: #0a0f1e;
+            --bg-secondary: #111827;
+            --bg-card: #151d30;
+            --bg-card-hover: #1a2540;
+            --bg-glass: rgba(21, 29, 48, 0.7);
+            --accent: #4f8fff;
+            --accent-glow: #7ab4ff;
+            --accent-purple: #8b5cf6;
+            --gold: #f0a500;
+            --gold-glow: #ffc247;
+            --text-primary: #e8edf5;
+            --text-secondary: #bcc6d4;
+            --text-muted: #7d8ba3;
+            --border: #243450;
+            --border-glass: rgba(255, 255, 255, 0.06);
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --radius: 18px;
+            --radius-xl: 24px;
+            --radius-sm: 10px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+            --shadow-glow-blue: 0 0 40px rgba(79, 143, 255, 0.18);
+            --shadow-glow-gold: 0 0 35px rgba(240, 165, 0, 0.2);
+            --shadow-premium: 0 20px 60px rgba(0, 0, 0, 0.55);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(79, 143, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(240, 165, 0, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+            animation: bgShift 20s ease-in-out infinite;
+        }
+        @keyframes bgShift {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(1%, -0.5%); }
+            66% { transform: translate(-0.5%, 0.8%); }
+        }
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.12; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(2.4); }
+        }
+        .orbital-ring {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 700px;
+            height: 200px;
+            border: 2px solid rgba(79, 143, 255, 0.05);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbitPulse 8s ease-in-out infinite;
+            transform: translate(-50%, -50%) rotate(-15deg);
+        }
+        .orbital-ring:nth-child(3) {
+            width: 900px;
+            height: 260px;
+            border-color: rgba(240, 165, 0, 0.035);
+            animation-delay: -4s;
+            transform: translate(-50%, -50%) rotate(10deg);
+        }
+        @keyframes orbitPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        .main-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 15, 30, 0.82);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-bottom: 1px solid var(--border-glass);
+            padding: 10px 0;
+            transition: var(--transition);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f8fff 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            box-shadow: 0 0 30px rgba(79, 143, 255, 0.4);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(79, 143, 255, 0.35); }
+            50% { box-shadow: 0 0 50px rgba(79, 143, 255, 0.7); }
+        }
+        .nav-brand-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 0%, #b8d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-brand-text small {
+            font-weight: 400;
+            font-size: 0.68rem;
+            display: block;
+            -webkit-text-fill-color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.88rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-glow);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .btn {
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            letter-spacing: 0.3px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+        }
+        .btn:hover::after { opacity: 1; }
+        .btn-primary { background: linear-gradient(135deg, #4f8fff 0%, #6c5ce7 100%); color: #fff; box-shadow: 0 4px 22px rgba(79, 143, 255, 0.35); }
+        .btn-primary:hover { box-shadow: 0 6px 34px rgba(79, 143, 255, 0.55); transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 2px solid var(--accent); color: var(--accent-glow); }
+        .btn-outline:hover { background: rgba(79, 143, 255, 0.08); box-shadow: var(--shadow-glow-blue); }
+        .btn-gold { background: linear-gradient(135deg, #f0a500 0%, #e08900 100%); color: #1a1a1a; font-weight: 700; box-shadow: 0 4px 22px rgba(240, 165, 0, 0.35); }
+        .btn-gold:hover { box-shadow: 0 6px 34px rgba(240, 165, 0, 0.55); transform: translateY(-2px); }
+        .btn-sm { padding: 7px 16px; font-size: 0.78rem; border-radius: 20px; }
+        .btn-xs { padding: 5px 12px; font-size: 0.7rem; border-radius: 14px; }
+        .btn-success { background: var(--success); color: #fff; font-weight: 600; }
+        .btn-danger { background: var(--danger); color: #fff; font-weight: 600; }
+        .hero { text-align: center; padding: 40px 20px 25px; position: relative; }
+        .hero-satellite { display: inline-block; font-size: 4.5rem; margin-bottom: 4px; animation: floatSat 4s ease-in-out infinite; filter: drop-shadow(0 12px 35px rgba(79, 143, 255, 0.35)); }
+        @keyframes floatSat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+        .hero-badge { display: inline-block; background: rgba(79, 143, 255, 0.1); border: 1px solid rgba(79, 143, 255, 0.3); padding: 8px 20px; border-radius: 30px; font-size: 0.85rem; color: var(--accent-glow); letter-spacing: 1px; margin-bottom: 14px; backdrop-filter: blur(8px); }
+        .hero h1 { font-size: 3.4rem; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 6px; background: linear-gradient(135deg, #fff 0%, #b8d4ff 50%, #7ab4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero .subtitle { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 4px; }
+        .hero .ceo-tag { font-size: 0.9rem; color: var(--gold); font-weight: 500; letter-spacing: 0.5px; }
+        .section { margin: 35px 0; }
+        .section-title { font-size: 1.85rem; font-weight: 800; text-align: center; margin-bottom: 6px; letter-spacing: -0.5px; }
+        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 26px; font-size: 0.93rem; }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-xl);
+            padding: 26px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+            box-shadow: var(--shadow-card);
+        }
+        .card:hover { border-color: rgba(79, 143, 255, 0.35); box-shadow: var(--shadow-glow-blue), var(--shadow-card); transform: translateY(-4px); background: var(--bg-card-hover); }
+        .card.recommended { border-color: rgba(240, 165, 0, 0.45); box-shadow: var(--shadow-glow-gold); }
+        .card.recommended::after { content: '⭐ BEST VALUE'; position: absolute; top: 14px; right: 14px; background: linear-gradient(135deg, #f0a500 0%, #e08900 100%); color: #1a1a1a; font-size: 0.68rem; font-weight: 700; padding: 5px 12px; border-radius: 20px; letter-spacing: 0.5px; z-index: 2; }
+        .card-header { margin-bottom: 12px; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px; }
+        .card-header h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 2px; }
+        .card-header .tagline { font-size: 0.78rem; color: var(--text-muted); }
+        .card-price { font-size: 2rem; font-weight: 900; color: var(--accent-glow); margin: 6px 0; }
+        .card-price span { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); }
+        .card-features { list-style: none; margin: 10px 0; }
+        .card-features li { padding: 4px 0; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 7px; }
+        .card-features li::before { content: '✓'; color: var(--success); font-weight: 700; font-size: 0.95rem; flex-shrink: 0; }
+        .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; }
+        .status-badge.activated { background: rgba(16, 185, 129, 0.12); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-badge.activated .dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; animation: dotPulse 2s ease-in-out infinite; }
+        .status-badge.expired { background: rgba(245, 158, 11, 0.12); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-badge.deactivated { background: rgba(239, 68, 68, 0.12); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        @keyframes dotPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); } 50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } }
+        .table-container { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+        table { width: 100%; border-collapse: collapse; background: var(--bg-card); }
+        th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
+        th { background: var(--bg-secondary); font-weight: 700; color: var(--accent-glow); letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.75rem; }
+        tr:hover td { background: rgba(79, 143, 255, 0.03); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.78); z-index: 2000; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 28px; width: 90%; max-width: 540px; box-shadow: var(--shadow-premium); position: relative; max-height: 88vh; overflow-y: auto; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+        .modal.wide { max-width: 680px; }
+        .modal.xwide { max-width: 860px; }
+        .modal.xxwide { max-width: 1000px; }
+        .modal h3 { font-size: 1.4rem; margin-bottom: 16px; text-align: center; font-weight: 800; }
+        .modal-close-btn { position: absolute; top: 12px; right: 16px; background: rgba(255, 255, 255, 0.05); border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; transition: var(--transition); z-index: 10; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; line-height: 1; }
+        .modal-close-btn:hover { color: #fff; background: rgba(255, 255, 255, 0.15); }
+        .form-group { margin-bottom: 13px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 4px; color: var(--text-secondary); font-size: 0.83rem; letter-spacing: 0.3px; }
+        .form-group input, .form-group select { width: 100%; padding: 11px 15px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-secondary); color: #fff; font-size: 0.95rem; transition: var(--transition); }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79, 143, 255, 0.12); }
+        .upi-box { background: var(--bg-secondary); border: 2px dashed rgba(79, 143, 255, 0.4); border-radius: var(--radius); padding: 18px; text-align: center; margin: 14px 0; }
+        .upi-box .upi-id { font-size: 1.2rem; font-weight: 800; letter-spacing: 1px; color: var(--gold-glow); font-family: 'Courier New', monospace; word-break: break-all; }
+        .qr-img { width: 170px; height: 170px; margin: 12px auto; display: block; border-radius: 12px; border: 3px solid #fff; background: #fff; padding: 5px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+        .dashboard-inner { text-align: center; }
+        .vc-display { font-size: 2.2rem; font-weight: 900; letter-spacing: 4px; color: var(--accent-glow); font-family: 'Courier New', monospace; background: rgba(79, 143, 255, 0.05); display: inline-block; padding: 10px 26px; border-radius: 12px; border: 2px dashed rgba(79, 143, 255, 0.5); margin: 6px 0; }
+        .info-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin: 12px 0; }
+        .info-item { background: var(--bg-secondary); padding: 11px 15px; border-radius: var(--radius-sm); border: 1px solid var(--border-glass); min-width: 90px; backdrop-filter: blur(4px); }
+        .info-item .label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .info-item .value { font-size: 1.05rem; font-weight: 700; color: #fff; }
+        .info-item .value.days-left { color: var(--accent-glow); font-size: 1.2rem; }
+        .info-item .value.expired-text { color: var(--danger); }
+        .late-fee-alert { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: var(--radius-sm); padding: 10px 14px; margin: 10px 0; color: #fca5a5; font-weight: 600; font-size: 0.85rem; }
+        .price-diff-box { background: rgba(240, 165, 0, 0.08); border: 2px solid rgba(240, 165, 0, 0.4); border-radius: var(--radius); padding: 16px; text-align: center; margin: 12px 0; animation: highlightPulse 1.5s ease-in-out infinite; }
+        @keyframes highlightPulse { 0%, 100% { border-color: rgba(240, 165, 0, 0.4); } 50% { border-color: rgba(240, 165, 0, 0.8); } }
+        .stat-card { background: var(--bg-glass); backdrop-filter: blur(8px); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 18px 20px; text-align: center; transition: var(--transition); }
+        .stat-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow-blue); transform: translateY(-2px); }
+        .stat-card .stat-icon { font-size: 2rem; margin-bottom: 4px; }
+        .stat-card .stat-value { font-size: 2rem; font-weight: 900; color: #fff; }
+        .stat-card .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .search-input { width: 100%; padding: 12px 18px; border-radius: 30px; border: 1px solid var(--border); background: var(--bg-secondary); color: #fff; font-size: 0.95rem; transition: var(--transition); }
+        .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79, 143, 255, 0.12); }
+        .connection-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; background: var(--bg-secondary); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); padding: 14px 16px; margin: 8px 0; transition: var(--transition); }
+        .connection-row:hover { border-color: var(--accent); box-shadow: 0 0 20px rgba(79, 143, 255, 0.1); }
+        .loyalty-badge { display: inline-flex; align-items: center; gap: 4px; background: linear-gradient(135deg, rgba(240, 165, 0, 0.2) 0%, rgba(240, 165, 0, 0.05) 100%); border: 1px solid rgba(240, 165, 0, 0.4); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; color: var(--gold-glow); font-weight: 600; }
+        .toast { position: fixed; bottom: 30px; right: 30px; background: var(--success); color: #fff; padding: 14px 24px; border-radius: 30px; font-weight: 600; z-index: 3000; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); animation: slideUp 0.4s ease; max-width: 400px; }
+        @keyframes slideUp { from { transform: translateY(60px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .toast.error { background: var(--danger); }
+        .footer { text-align: center; padding: 30px 20px; border-top: 1px solid var(--border-glass); color: var(--text-muted); font-size: 0.85rem; margin-top: 40px; }
+        .footer a { color: var(--accent-glow); cursor: pointer; text-decoration: underline; }
+        .installer-link { font-size: 0.7rem; color: var(--text-muted); cursor: pointer; opacity: 0.45; transition: var(--transition); display: inline-block; margin-top: 4px; }
+        .installer-link:hover { opacity: 1; color: var(--accent-glow); }
+        .highlight-box { background: rgba(240, 165, 0, 0.05); border: 1px solid rgba(240, 165, 0, 0.2); border-radius: var(--radius-sm); padding: 12px; margin: 8px 0; font-size: 0.88rem; }
+        .referral-box { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(79, 143, 255, 0.05) 100%); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: var(--radius); padding: 18px; text-align: center; margin: 14px 0; }
+        .referral-code { font-family: 'Courier New', monospace; font-size: 1.4rem; font-weight: 900; letter-spacing: 3px; color: var(--accent-purple); background: rgba(139, 92, 246, 0.1); padding: 8px 20px; border-radius: 8px; border: 2px dashed rgba(139, 92, 246, 0.5); display: inline-block; }
+        .signal-meter { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin: 6px 0; }
+        .signal-fill { height: 100%; background: linear-gradient(90deg, #10b981, #4f8fff, #f0a500); border-radius: 4px; transition: width 0.5s; }
+        .offer-banner { background: linear-gradient(135deg, rgba(240, 165, 0, 0.15), rgba(240, 165, 0, 0.05)); border: 1px solid rgba(240, 165, 0, 0.3); border-radius: var(--radius); padding: 16px; text-align: center; margin: 20px 0; animation: glowPulse 2s infinite; }
+        @keyframes glowPulse { 0%, 100% { box-shadow: 0 0 20px rgba(240, 165, 0, 0.2); } 50% { box-shadow: 0 0 40px rgba(240, 165, 0, 0.5); } }
+        .leaderboard-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .testimonial-card { background: var(--bg-card); border-radius: var(--radius); padding: 20px; text-align: center; }
+        .accordion { background: var(--bg-glass); border: 1px solid var(--border); border-radius: var(--radius-sm); margin: 8px 0; }
+        .accordion-header { padding: 14px 18px; cursor: pointer; font-weight: 600; display: flex; justify-content: space-between; user-select: none; }
+        .accordion-content { padding: 0 18px 14px; display: none; }
+        .live-tv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+        .channel-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius); padding: 16px; text-align: center; cursor: pointer; transition: var(--transition); position: relative; overflow: hidden; }
+        .channel-card:hover { border-color: var(--accent); box-shadow: var(--shadow-glow-blue); transform: translateY(-3px); }
+        .channel-card .ch-icon { font-size: 2.5rem; margin-bottom: 6px; }
+        .channel-card .ch-name { font-weight: 700; font-size: 0.9rem; color: #fff; margin-bottom: 2px; }
+        .channel-card .ch-lang { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; }
+        .channel-card .ch-live-dot { position: absolute; top: 10px; right: 10px; width: 10px; height: 10px; background: #ef4444; border-radius: 50%; animation: dotPulse 2s ease-in-out infinite; }
+        .channel-card .ch-now { font-size: 0.72rem; color: var(--gold); margin-top: 4px; font-style: italic; }
+        .video-player-area { background: #000; border-radius: var(--radius); overflow: hidden; position: relative; margin: 16px 0; aspect-ratio: 16/9; max-height: 500px; border: 2px solid var(--border); }
+        .video-player-area iframe { width: 100%; height: 100%; border: none; }
+        .epg-row { display: flex; gap: 8px; overflow-x: auto; padding: 8px 0; }
+        .epg-item { min-width: 140px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; text-align: center; flex-shrink: 0; }
+        .epg-item .show-time { font-size: 0.7rem; color: var(--accent-glow); font-weight: 600; }
+        .epg-item .show-name { font-size: 0.82rem; font-weight: 700; color: #fff; }
+        .epg-item.active { border-color: var(--accent); box-shadow: 0 0 15px rgba(79, 143, 255, 0.3); }
+        .favorites-tag { display: inline-block; background: rgba(240, 165, 0, 0.2); color: var(--gold); padding: 2px 8px; border-radius: 10px; font-size: 0.65rem; font-weight: 700; margin-top: 3px; }
+        .category-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; justify-content: center; }
+        .category-tab { padding: 8px 18px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: var(--transition); white-space: nowrap; }
+        .category-tab.active, .category-tab:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-satellite { font-size: 2.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .live-tv-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .nav-links { gap: 8px; font-size: 0.72rem; }
+            .nav-brand-text { font-size: 1.1rem; }
+            .modal { padding: 16px; width: 95%; }
+            .card-price { font-size: 1.4rem; }
+            .vc-display { font-size: 1.4rem; letter-spacing: 2px; }
+            .stat-card .stat-value { font-size: 1.4rem; }
+            .video-player-area { aspect-ratio: 4/3; max-height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars-container" id="starsContainer"></div>
+    <div class="orbital-ring"></div>
+    <div class="orbital-ring"></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <div class="nav-brand" onclick="scrollToTop()">
+                <div class="nav-logo">📡</div>
+                <div class="nav-brand-text">NovaD2H<small>by Aritra Khan</small></div>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('plans-section')">📦 Plans</a></li>
+                <li><a onclick="scrollToSection('addons-section')">➕ Add-Ons</a></li>
+                <li><a onclick="scrollToSection('newconn-section')">🆕 New</a></li>
+                <li><a onclick="scrollToSection('livetv-section')">📺 Live TV</a></li>
+                <li><a onclick="scrollToSection('support-section')">📞 Support</a></li>
+                <li><button class="btn btn-primary btn-sm" onclick="openLoginModal()">🔐 Login</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <section class="hero">
+            <div class="hero-satellite">📡</div>
+            <div class="hero-badge">🌟 India's Most Premium D2H Service</div>
+            <h1>NovaD2H</h1>
+            <p class="subtitle">Customize Your TV Experience — Your Channels, Your Choice</p>
+            <p class="ceo-tag">Founded & Led by <strong>Aritra Khan</strong> — CEO, NovaD2H</p>
+            <br>
+            <button class="btn btn-gold" onclick="scrollToSection('newconn-section')">📡 Get New Connection</button>
+            <button class="btn btn-outline" style="margin-left:10px;" onclick="openLoginModal()">🔐 Customer Login</button>
+            <br>
+            <button class="btn btn-primary btn-sm" style="margin-top:12px;" onclick="openRechargeWithVC()">🔋 Quick Recharge (VC Required)</button>
+        </section>
+
+        <div class="offer-banner">
+            <h3>⚡ Limited Time Offer! ⚡</h3>
+            <p>Get <strong>20% extra Loyalty Points</strong> on all recharges this month. Use code: <strong style="color:var(--gold);">FESTIVE20</strong> (auto-applied)</p>
+            <p id="offerCountdown" style="font-size:1.2rem;font-weight:700;color:var(--gold);"></p>
+        </div>
+
+        <section class="section" id="plans-section">
+            <h2 class="section-title">🔵 Base Subscription Plans</h2>
+            <p class="section-subtitle">Choose a base pack that fits your lifestyle</p>
+            <div class="cards-grid">
+                <div class="card recommended">
+                    <div class="card-header"><h3>🎯 Custom Choice Pack</h3><p class="tagline">Core Plan — Full Flexibility</p></div>
+                    <div class="card-price">₹99 <span>/mo (SD)</span></div>
+                    <div class="card-price" style="font-size:1.4rem;">₹110 <span>/mo (HD)</span></div>
+                    <ul class="card-features"><li>Select up to 27 TV channels of choice</li><li>All Free-To-Air (FTA) channels included</li><li>Built-in infotainment category access</li><li>Full customization — user-controlled pack builder</li><li>Channel changes allowed once per billing cycle</li></ul>
+                    <button class="btn btn-primary btn-sm" onclick="openRechargeWithVC('Custom Choice Pack','SD',99)">🔋 Recharge SD @ ₹99</button>
+                    <button class="btn btn-outline btn-sm" style="margin-left:6px;" onclick="openRechargeWithVC('Custom Choice Pack','HD',110)">🔋 Recharge HD @ ₹110</button>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>🧓 Senior Citizen Comfort</h3><p class="tagline">Simplicity & Accessibility</p></div>
+                    <div class="card-price">₹99+ <span>/mo (SD)</span></div>
+                    <div class="card-price" style="font-size:1.4rem;">₹110+ <span>/mo (HD)</span></div>
+                    <ul class="card-features"><li>Simplified channel selection interface</li><li>Recommended: News, Devotional, Regional, Classic</li><li>Easy navigation mode (large UI, minimal steps)</li><li>Customer assistance priority support</li></ul>
+                    <button class="btn btn-primary btn-sm" onclick="openRechargeWithVC('Senior Citizen Comfort','SD',99)">🔋 Recharge SD</button>
+                    <button class="btn btn-outline btn-sm" style="margin-left:6px;" onclick="openRechargeWithVC('Senior Citizen Comfort','HD',110)">🔋 Recharge HD</button>
+                </div>
+                <div class="card">
+                    <div class="card-header"><h3>👶 Kids Masti Pack</h3><p class="tagline">Safe Entertainment for Children</p></div>
+                    <div class="card-price">₹79 <span>/mo (SD)</span></div>
+                    <div class="card-price" style="font-size:1.4rem;">₹99 <span>/mo (HD)</span></div>
+                    <ul class="card-features"><li>Child-safe curated content library</li><li>Cartoon & animation channels</li><li>Educational infotainment content</li><li>Parental control system — enabled by default</li></ul>
+                    <button class="btn btn-primary btn-sm" onclick="openRechargeWithVC('Kids Masti Pack','SD',79)">🔋 Recharge SD @ ₹79</button>
+                    <button class="btn btn-outline btn-sm" style="margin-left:6px;" onclick="openRechargeWithVC('Kids Masti Pack','HD',99)">🔋 Recharge HD @ ₹99</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="addons-section">
+            <h2 class="section-title">➕ Add-On Channel Packs</h2>
+            <p class="section-subtitle">Enhance any base pack with optional add-ons (stackable)</p>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Add-On Type</th><th>Description</th><th>Price Range</th><th>Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>⚽ Sports Pack</td><td>Live sports channels</td><td>₹40 – ₹80 / month</td><td><button class="btn btn-outline btn-sm" onclick="openRechargeWithVC('Sports Add-On','N/A',60)">Add</button></td></tr>
+                        <tr><td>🎬 Movies Pack</td><td>Bollywood + Hollywood</td><td>₹50 – ₹100 / month</td><td><button class="btn btn-outline btn-sm" onclick="openRechargeWithVC('Movies Add-On','N/A',75)">Add</button></td></tr>
+                        <tr><td>🎵 Music Pack</td><td>Music & entertainment</td><td>₹30 – ₹60 / month</td><td><button class="btn btn-outline btn-sm" onclick="openRechargeWithVC('Music Add-On','N/A',45)">Add</button></td></tr>
+                        <tr><td>🌍 Regional Pack</td><td>Language-specific content</td><td>₹30 – ₹70 / month</td><td><button class="btn btn-outline btn-sm" onclick="openRechargeWithVC('Regional Add-On','N/A',50)">Add</button></td></tr>
+                        <tr><td>✨ Premium HD Pack</td><td>Extra HD channels bundle</td><td>₹60+ / month</td><td><button class="btn btn-outline btn-sm" onclick="openRechargeWithVC('Premium HD Add-On','N/A',60)">Add</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="highlight-box"><strong>📌 Add-On Rules:</strong> Stackable | Activate/remove anytime | Prorated billing | Requires active base subscription</div>
+        </section>
+
+        <section class="section" id="livetv-section">
+            <h2 class="section-title">📺 Live TV — Free Channel Preview</h2>
+            <p class="section-subtitle">Watch select free-to-air channels live (login required for full access)</p>
+            <div id="liveTVPreviewArea">
+                <div class="highlight-box" style="text-align:center;">
+                    <p>🔐 <strong>Login with your VC number</strong> to access the full Live TV guide with 50+ free channels, EPG, and favorites.</p>
+                    <button class="btn btn-primary btn-sm" onclick="openLoginModal()">🔐 Login to Watch</button>
+                </div>
+                <div class="category-tabs" id="liveTVCategories"></div>
+                <div class="live-tv-grid" id="liveTVGrid"></div>
+            </div>
+        </section>
+
+        <section class="section" id="newconn-section">
+            <h2 class="section-title">📡 New Connection Plans</h2>
+            <p class="section-subtitle">Get started with NovaD2H today</p>
+            <div class="cards-grid">
+                <div class="card"><div class="card-header"><h3>🔵 Starter Connection</h3><p class="tagline">Ideal for first-time users</p></div><div class="card-price">₹999 <span>SD (one-time)</span></div><div class="card-price" style="font-size:1.4rem;">₹1299 <span>HD (one-time)</span></div><ul class="card-features"><li>Standard HD/SD Set-Top Box</li><li>Dish antenna installation</li><li>Free basic installation</li><li>Remote control + wiring kit</li><li>12 months hardware warranty</li></ul><button class="btn btn-gold btn-sm" onclick="openNewConnectionForm('Starter')">📡 Order Starter</button></div>
+                <div class="card recommended"><div class="card-header"><h3>🟢 Smart Install Pack</h3><p class="tagline">Most Popular — Balanced Offer</p></div><div class="card-price">₹1199 <span>SD Smart</span></div><div class="card-price" style="font-size:1.4rem;">₹1499 <span>HD Smart</span></div><ul class="card-features"><li>HD Set-Top Box (Smart ready)</li><li>Dish + installation</li><li>🎁 1 month free Custom Choice Pack</li><li>Priority installation (24–48 hours)</li><li>Free demo & setup assistance</li></ul><button class="btn btn-gold btn-sm" onclick="openNewConnectionForm('Smart Install')">📡 Order Smart Install</button></div>
+                <div class="card"><div class="card-header"><h3>🟡 Premium Family</h3><p class="tagline">Full Home Entertainment</p></div><div class="card-price">₹1999 <span>Premium HD</span></div><ul class="card-features"><li>HD Smart Set-Top Box (premium model)</li><li>High-gain dish antenna</li><li>Multi-room ready support</li><li>🎁 2 months free subscription</li><li>🎁 Free add-on (Sports OR Movies)</li><li>Extended warranty: 18 months</li></ul><button class="btn btn-gold btn-sm" onclick="openNewConnectionForm('Premium Family')">📡 Order Premium</button></div>
+                <div class="card"><div class="card-header"><h3>🔴 Budget Installation</h3><p class="tagline">Low-Cost Entry Plan</p></div><div class="card-price">₹699 <span>Budget SD</span></div><ul class="card-features"><li>SD Set-Top Box</li><li>Standard installation</li><li>Basic wiring setup</li><li>Upgrade to HD available anytime</li></ul><p style="font-size:0.75rem;color:var(--text-muted);">⚠ No free subscription | Limited support priority</p><button class="btn btn-outline btn-sm" onclick="openNewConnectionForm('Budget')">📡 Order Budget</button></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🛠️ Channel Builder</h2>
+            <p class="section-subtitle">Customize your channel list (coming soon)</p>
+            <div class="card"><p>Build your perfect pack by selecting genres and specific channels. This feature will be available in the next update!</p></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🏆 Referral Leaderboard</h2>
+            <p class="section-subtitle">Top referrers earn bonus points</p>
+            <div id="leaderboardContent" class="cards-grid"></div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💬 Customer Testimonials</h2>
+            <div class="testimonial-card">
+                <p>"NovaD2H is the best! I can choose exactly what I want and pay only for that. Highly recommended."</p>
+                <strong>- Riya Sharma, Mumbai</strong>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">❓ Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleFAQ(this)">How do I recharge? ▼</div>
+                <div class="accordion-content">Login with your VC number, select a plan, scan the UPI QR code, and confirm your payment.</div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleFAQ(this)">Can I change my plan anytime? ▼</div>
+                <div class="accordion-content">Yes! Use the "Modify Plan" option in your dashboard. You only pay the price difference (if upgrading).</div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleFAQ(this)">How do I watch free Live TV channels? ▼</div>
+                <div class="accordion-content">Login to your account and navigate to the Live TV section. All FTA (Free-To-Air) channels are available at no extra cost with any active subscription.</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">👨‍💼 Message from CEO</h2>
+            <div class="card"><p>"At NovaD2H, we're redefining television. Flexibility, transparency, and customer delight are our pillars. Thank you for being part of our journey." – <strong>Aritra Khan</strong></p></div>
+        </section>
+
+        <section class="section" id="support-section">
+            <h2 class="section-title">📞 Customer Support</h2>
+            <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+                <div class="card" style="text-align:center;"><h3>📞 Helpline</h3><p style="font-size:1.6rem;font-weight:900;color:var(--accent-glow);">7407607365</p><p>24×7 Support</p></div>
+                <div class="card" style="text-align:center;"><h3>💬 WhatsApp</h3><p style="font-size:1.1rem;font-weight:700;color:var(--success);">+91 7407607365</p><p>Chat Support</p></div>
+                <div class="card" style="text-align:center;"><h3>🌐 Online Portal</h3><p>Manage account, recharge & modify plans online — anytime.</p></div>
+                <div class="card" style="text-align:center;"><h3>🔐 Policies</h3><p>One account per user | No sharing | KYC required | Misuse = suspension</p></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <p>© 2024 <strong>NovaD2H</strong> — All Rights Reserved | CEO: <strong>Aritra Khan</strong></p>
+        <p>📞 Helpline: 7407607365 | 💳 UPI: 8927589981@ybl</p>
+        <p class="installer-link" onclick="openInstallerPortal()">🔧 Installer Portal (Authorized Personnel Only)</p>
+    </div>
+
+    <div class="modal-overlay" id="loginModal" style="display:none;">
+        <div class="modal">
+            <button class="modal-close-btn" data-close="loginModal">✕</button>
+            <div style="text-align:center;margin-bottom:14px;"><span style="font-size:3rem;">📡</span><h3>🔐 Welcome Back!</h3><p style="color:var(--text-muted);">Enter your 12-digit VC Number</p></div>
+            <div class="form-group"><input type="text" id="vcLoginInput" placeholder="e.g. 123456789012" maxlength="12" style="font-family:'Courier New',monospace;font-size:1.2rem;letter-spacing:3px;text-align:center;"></div>
+            <button class="btn btn-primary" style="width:100%;" onclick="customerLogin()">🔓 Login</button>
+            <p style="text-align:center;margin-top:8px;font-size:0.75rem;color:var(--text-muted);">Demo VC: <strong>123456789012</strong></p>
+        </div>
+    </div>
+    <div class="modal-overlay" id="dashboardModal" style="display:none;">
+        <div class="modal wide">
+            <button class="modal-close-btn" data-close="dashboardModal">✕</button>
+            <h3>📊 My Dashboard</h3>
+            <div id="dashboardContent" class="dashboard-inner"></div>
+        </div>
+    </div>
+    <div class="modal-overlay" id="rechargeModal" style="display:none;">
+        <div class="modal"><button class="modal-close-btn" data-close="rechargeModal">✕</button><h3>🔋 Recharge</h3><div id="rechargeContent"></div></div>
+    </div>
+    <div class="modal-overlay" id="vcPromptModal" style="display:none;">
+        <div class="modal"><button class="modal-close-btn" data-close="vcPromptModal">✕</button><h3>Enter VC Number</h3><input type="text" id="vcPromptInput" placeholder="12-digit VC" maxlength="12" style="font-family:'Courier New',monospace;font-size:1.1rem;letter-spacing:2px;text-align:center;width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--bg-secondary);color:#fff;"><button class="btn btn-primary" style="margin-top:10px;width:100%;" onclick="verifyVCAndRecharge()">Verify & Continue</button></div>
+    </div>
+    <div class="modal-overlay" id="modifyPlanModal" style="display:none;">
+        <div class="modal xwide"><button class="modal-close-btn" data-close="modifyPlanModal">✕</button><h3>✏️ Modify Plan</h3><div id="modifyPlanContent"></div></div>
+    </div>
+    <div class="modal-overlay" id="newConnModal" style="display:none;">
+        <div class="modal"><button class="modal-close-btn" data-close="newConnModal">✕</button><h3>📡 New Connection</h3><div id="newConnContent"></div></div>
+    </div>
+    <div class="modal-overlay" id="installerModal" style="display:none;">
+        <div class="modal xwide"><button class="modal-close-btn" data-close="installerModal">✕</button><h3>🔧 Installer Portal</h3><input type="password" id="installerCode" placeholder="Installer Code" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--border);background:var(--bg-secondary);color:#fff;margin-bottom:10px;"><button class="btn btn-primary" onclick="installerLogin()">Access</button><div id="installerPanel" style="margin-top:14px;"></div></div>
+    </div>
+    <div class="modal-overlay" id="liveTVModal" style="display:none;">
+        <div class="modal xxwide"><button class="modal-close-btn" data-close="liveTVModal">✕</button><h3>📺 Live TV Player</h3><div id="liveTVPlayerContent"></div></div>
+    </div>
+    <div id="toastContainer"></div>
+
+    <script>
+        let _memoryStorage = {};
+        let _useLS = true;
+        try { localStorage.setItem('__t', '1'); localStorage.removeItem('__t'); } catch (e) { _useLS = false; }
+        function getConnections() { return _useLS ? JSON.parse(localStorage.getItem('novaD2H_connections') || '{}') : (_memoryStorage.novaD2H_connections || {}); }
+        function saveConnections(c) { if (_useLS) localStorage.setItem('novaD2H_connections', JSON.stringify(c)); else _memoryStorage.novaD2H_connections = c; }
+        function getCurrentUser() { return JSON.parse(localStorage.getItem('novaD2H_currentUser') || 'null'); }
+        function setCurrentUser(vc) { localStorage.setItem('novaD2H_currentUser', JSON.stringify(vc)); }
+        function getUserFavorites() { return JSON.parse(localStorage.getItem('novaD2H_favorites') || '[]'); }
+        function saveUserFavorites(favs) { localStorage.setItem('novaD2H_favorites', JSON.stringify(favs)); }
+
+        (function() { const c = document.getElementById('starsContainer'); for (let i = 0; i < 140; i++) { const s = document.createElement('div'); s.classList.add('star'); s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%'; const sz = Math.random() * 2.8 + 1; s.style.width = sz + 'px'; s.style.height = sz + 'px'; s.style.setProperty('--duration', (Math.random() * 3.5 + 2) + 's'); s.style.animationDelay = Math.random() * 5 + 's'; c.appendChild(s); } })();
+
+        function generateVC() { let vc; const ex = getConnections(); do { vc = Array.from({ length: 12 }, () => Math.floor(Math.random() * 10)).join(''); } while (ex[vc]); return vc; }
+        function getDaysSinceExpiry(expiryDate) { if (!expiryDate) return 0; return Math.max(0, Math.floor((new Date() - new Date(expiryDate)) / (1000 * 60 * 60 * 24))); }
+        function getDaysUntilExpiry(expiryDate) { if (!expiryDate) return 0; return Math.max(0, Math.floor((new Date(expiryDate) - new Date()) / (1000 * 60 * 60 * 24))); }
+        function determineStatus(conn) { if (!conn.expiryDate) return conn.status === 'pending_installation' ? 'pending_installation' : 'activated'; const now = new Date(); if (now <= new Date(conn.expiryDate)) return 'activated'; return getDaysSinceExpiry(conn.expiryDate) > 60 ? 'deactivated' : 'expired'; }
+        function getLateFee(conn) { return determineStatus(conn) === 'deactivated' ? 20 : 0; }
+        function generateReferralCode(vc) { return 'NOVA-' + vc.substring(0, 4) + '-' + vc.substring(8, 12); }
+        const ALL_PLANS = [
+            { name: 'Custom Choice Pack', sd: 99, hd: 110, icon: '🎯', desc: 'Full flexibility' },
+            { name: 'Senior Citizen Comfort', sd: 99, hd: 110, icon: '🧓', desc: 'Simplicity & accessibility' },
+            { name: 'Kids Masti Pack', sd: 79, hd: 99, icon: '👶', desc: 'Safe content for children' }
+        ];
+        function getPlanPrice(name, variant) { const p = ALL_PLANS.find(p => p.name === name); return p ? (variant === 'HD' ? p.hd : p.sd) : 99; }
+
+        function showToast(msg, isErr = false) { const ct = document.getElementById('toastContainer'); const t = document.createElement('div'); t.className = 'toast' + (isErr ? ' error' : ''); t.textContent = msg; ct.appendChild(t); setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.4s'; setTimeout(() => t.remove(), 400); }, 3000); }
+
+        function openModal(id) { const el = document.getElementById(id); if (el) el.style.display = 'flex'; }
+        function closeModal(id) { const el = document.getElementById(id); if (el) el.style.display = 'none'; const duplicates = document.querySelectorAll('[id="' + id + '"]'); if (duplicates.length > 1) { for (let i = 1; i < duplicates.length; i++) duplicates[i].remove(); } }
+        document.addEventListener('click', function(e) { const closeBtn = e.target.closest('[data-close]'); if (closeBtn) { e.preventDefault(); e.stopPropagation(); closeModal(closeBtn.getAttribute('data-close')); return; } if (e.target.classList.contains('modal-overlay')) e.target.style.display = 'none'; });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { const visible = document.querySelectorAll('.modal-overlay[style*="display: flex"],.modal-overlay[style*="display:flex"]'); if (visible.length > 0) visible[visible.length - 1].style.display = 'none'; } });
+
+        function scrollToSection(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+        function getQRUrl(amount) { return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent('upi://pay?pa=8927589981@ybl&pn=NovaD2H&am='+amount+'&cu=INR&tn=NovaD2H_Recharge')}`; }
+
+        function updateOfferCountdown() { const now = new Date(); const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59); const diff = endOfMonth - now; if (diff <= 0) { document.getElementById('offerCountdown').textContent = 'Offer expired'; return; } const days = Math.floor(diff / (1000 * 60 * 60 * 24)); const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)); document.getElementById('offerCountdown').textContent = `⏳ ${days}d ${hours}h remaining`; }
+        updateOfferCountdown(); setInterval(updateOfferCountdown, 60000);
+
+        let pendingRechargePlan = null, pendingRechargeVariant = null, pendingRechargePrice = null;
+        function openRechargeWithVC(planName, variant, price) { pendingRechargePlan = planName || null; pendingRechargeVariant = variant || null; pendingRechargePrice = price || null; document.getElementById('vcPromptInput').value = ''; openModal('vcPromptModal'); }
+        function verifyVCAndRecharge() { const vc = document.getElementById('vcPromptInput').value.trim(); if (vc.length !== 12 || !/^\d{12}$/.test(vc)) { showToast('❌ Invalid VC', true); return; } const connections = getConnections(); if (!connections[vc]) { showToast('❌ VC not found', true); return; } const conn = connections[vc]; if (conn.status === 'pending_installation') { showToast('⚠️ Pending installation', true); return; } closeModal('vcPromptModal'); const plan = pendingRechargePlan || conn.currentPlan; const variant = pendingRechargeVariant || conn.variant; const price = pendingRechargePrice || conn.basePrice || 99; const lateFee = getLateFee(conn); openRechargeModalWithVC(vc, plan, variant, price, lateFee); }
+        function openRechargeModalWithVC(vcNumber, planName, variant, price, lateFee) { const total = price + (lateFee || 0); const qrUrl = getQRUrl(total); const content = document.getElementById('rechargeContent'); content.innerHTML = `<div style="text-align:center;"><p><strong>VC:</strong> ${vcNumber}</p><p><strong>Plan:</strong> ${planName} (${variant})</p><h2>₹${total}</h2>${lateFee>0?`<div class="late-fee-alert">Includes ₹${lateFee} reactivation fee</div>`:''}<div class="upi-box"><img src="${qrUrl}" class="qr-img" onerror="this.style.display='none';document.getElementById('qrFallback').style.display='block';"><div id="qrFallback" style="display:none;padding:16px;background:#fff;border-radius:10px;color:#333;">UPI ID: 8927589981@ybl<br>Amount: ₹${total}</div><p class="upi-id">8927589981@ybl</p></div><button class="btn btn-gold" onclick="confirmRechargeWithVC('${vcNumber}','${planName}','${variant}',${price},${lateFee})">✅ I've Paid</button></div>`; openModal('rechargeModal'); }
+        function confirmRechargeWithVC(vc, plan, variant, price, lateFee) { closeModal('rechargeModal'); const connections = getConnections(); if (connections[vc]) { const now = new Date(); const exp = new Date(now); exp.setDate(exp.getDate() + 30); connections[vc].currentPlan = plan; connections[vc].variant = variant; connections[vc].basePrice = price; connections[vc].lastRecharge = now.toISOString().split('T')[0]; connections[vc].expiryDate = exp.toISOString().split('T')[0]; connections[vc].status = 'activated'; connections[vc].loyaltyPoints = (connections[vc].loyaltyPoints || 0) + Math.floor(price * 1.2 / 10); connections[vc].referralCode = connections[vc].referralCode || generateReferralCode(vc); if (!connections[vc].transactions) connections[vc].transactions = []; connections[vc].transactions.push({ date: now.toISOString(), amount: price + lateFee, type: 'recharge', plan }); saveConnections(connections); showToast(`✅ Recharged ₹${price + lateFee}!`); if (document.getElementById('dashboardModal').style.display === 'flex') showDashboard(vc, connections[vc]); } }
+
+        function openLoginModal() { document.getElementById('vcLoginInput').value = ''; openModal('loginModal'); }
+        function customerLogin() { const vc = document.getElementById('vcLoginInput').value.trim(); if (vc.length !== 12 || !/^\d{12}$/.test(vc)) { showToast('❌ Invalid VC', true); return; } const connections = getConnections(); if (!connections[vc]) { showToast('❌ VC not found', true); return; } const conn = connections[vc]; if (conn.status === 'pending_installation') { showToast('⚠️ Pending installation', true); return; } conn.status = determineStatus(conn); conn.referralCode = conn.referralCode || generateReferralCode(vc); conn.loyaltyPoints = conn.loyaltyPoints || 0; saveConnections(connections); setCurrentUser(vc); closeModal('loginModal'); showDashboard(vc, conn); renderLiveTVGrid(vc); }
+        function showDashboard(vc, conn) { const status = determineStatus(conn); const daysUntil = getDaysUntilExpiry(conn.expiryDate); const lateFee = getLateFee(conn); const pts = conn.loyaltyPoints || 0; const signalStrength = status === 'activated' ? Math.floor(Math.random() * 40 + 60) : 0; let statusBadge = ''; if (status === 'activated') statusBadge = '<span class="status-badge activated"><span class="dot"></span> ACTIVATED</span>'; else if (status === 'expired') statusBadge = '<span class="status-badge expired">EXPIRED</span>'; else if (status === 'deactivated') statusBadge = '<span class="status-badge deactivated">DEACTIVATED</span>'; const content = document.getElementById('dashboardContent'); content.innerHTML = `<div class="vc-display">${vc}</div><div style="margin:6px 0;">${statusBadge} <span class="loyalty-badge">⭐ ${pts} Pts</span></div><div class="info-row"><div class="info-item"><div class="label">👤 Name</div><div class="value">${conn.customerName||'N/A'}</div></div><div class="info-item"><div class="label">📦 Plan</div><div class="value">${conn.currentPlan||'None'}</div></div><div class="info-item"><div class="label">📺 Variant</div><div class="value">${conn.variant||'SD'}</div></div></div><div class="info-row"><div class="info-item"><div class="label">📅 Expiry</div><div class="value">${conn.expiryDate ? new Date(conn.expiryDate).toLocaleDateString('en-IN') : 'N/A'}</div></div><div class="info-item"><div class="label">⏳ Days Left</div><div class="value days-left">${status==='activated' ? daysUntil + ' days' : '<span class="expired-text">0</span>'}</div></div></div><div class="signal-meter"><div class="signal-fill" style="width:${signalStrength}%;"></div></div><p style="font-size:0.7rem;color:var(--text-muted);">Signal Strength: ${signalStrength}%</p>${lateFee>0?`<div class="late-fee-alert">₹20 reactivation fee applies</div>`:''}<div class="referral-box"><p style="font-size:0.8rem;color:var(--text-muted);">Your Referral Code</p><span class="referral-code">${conn.referralCode || generateReferralCode(vc)}</span><p style="font-size:0.7rem;color:var(--text-muted);">Share & earn 50 bonus points per referral</p></div><br><button class="btn btn-gold" onclick="openRechargeModalWithVC('${vc}','${conn.currentPlan||'Custom Choice Pack'}','${conn.variant||'SD'}',${conn.basePrice||99},${lateFee})">🔋 Recharge</button><button class="btn btn-outline btn-sm" onclick="openModifyPlan('${vc}')">✏️ Modify Plan</button><button class="btn btn-outline btn-sm" onclick="openProfile('${vc}')">👤 Profile</button><button class="btn btn-outline btn-sm" onclick="openTransactionHistory('${vc}')">📜 History</button><button class="btn btn-outline btn-sm" onclick="openLoyaltyRedeem('${vc}')">🎁 Redeem Points</button><button class="btn btn-primary btn-sm" onclick="closeModal('dashboardModal');scrollToSection('livetv-section');renderLiveTVGrid('${vc}');" style="margin-top:6px;">📺 Watch Live TV</button><button class="btn btn-danger btn-sm" onclick="logoutUser()" style="margin-top:6px;">🚪 Logout</button>`; openModal('dashboardModal'); renderLiveTVGrid(vc); }
+        function logoutUser() { setCurrentUser(null); closeModal('dashboardModal'); renderLiveTVGrid(null); showToast('👋 Logged out successfully'); }
+
+        function openModifyPlan(vc) { const conn = getConnections()[vc]; if (!conn) return; const currPlan = conn.currentPlan || 'Custom Choice Pack'; const currVar = conn.variant || 'SD'; const currPrice = conn.basePrice || getPlanPrice(currPlan, currVar); const content = document.getElementById('modifyPlanContent'); content.innerHTML = `<p>Current: ${currPlan} (${currVar}) ₹${currPrice}</p><div class="cards-grid">${ALL_PLANS.map((p, idx) => { const newPrice = currVar === 'HD' ? p.hd : p.sd; const diff = newPrice - currPrice; const diffText = diff > 0 ? `+₹${diff}` : diff < 0 ? `-₹${Math.abs(diff)}` : 'Free'; return `<div class="card" onclick="selectModifyPlan(${idx},'${vc}','${currVar}',${currPrice})" style="cursor:pointer;"><h3>${p.icon} ${p.name}</h3><p>₹${newPrice} (${currVar})</p><p style="font-weight:700;color:${diff>0?'var(--gold)':'var(--success)'};">${diffText}</p></div>`; }).join('')}</div><div id="modifyActionArea"></div>`; openModal('modifyPlanModal'); }
+        function selectModifyPlan(idx, vc, variant, currPrice) { const plan = ALL_PLANS[idx]; const newPrice = variant === 'HD' ? plan.hd : plan.sd; const diff = newPrice - currPrice; const action = document.getElementById('modifyActionArea'); if (diff <= 0) { action.innerHTML = `<div class="price-diff-box">Free upgrade/downgrade</div><button class="btn btn-success" onclick="confirmModifyPlan('${vc}','${plan.name}','${variant}',${newPrice},0)">✅ Confirm Free Change</button>`; } else { action.innerHTML = `<div class="price-diff-box">Pay difference: ₹${diff}</div><img src="${getQRUrl(diff)}" class="qr-img" onerror="this.style.display='none';"><p style="text-align:center;font-size:0.8rem;">UPI: 8927589981@ybl</p><button class="btn btn-gold" onclick="confirmModifyPlan('${vc}','${plan.name}','${variant}',${newPrice},${diff})">Pay ₹${diff} & Change</button>`; } }
+        function confirmModifyPlan(vc, newPlan, variant, newPrice, paid) { closeModal('modifyPlanModal'); const connections = getConnections(); if (connections[vc]) { connections[vc].currentPlan = newPlan; connections[vc].basePrice = newPrice; connections[vc].variant = variant; if (paid > 0) connections[vc].loyaltyPoints = (connections[vc].loyaltyPoints || 0) + Math.floor(paid / 10); if (!connections[vc].transactions) connections[vc].transactions = []; if (paid > 0) connections[vc].transactions.push({ date: new Date().toISOString(), amount: paid, type: 'plan_change', plan: newPlan }); saveConnections(connections); showToast(`✅ Plan changed to ${newPlan}`); if (document.getElementById('dashboardModal').style.display === 'flex') showDashboard(vc, connections[vc]); } }
+
+        function openNewConnectionForm(type) { const content = document.getElementById('newConnContent'); content.innerHTML = `<p>Selected: <strong>${type}</strong></p><div class="form-group"><input type="text" id="newCustName" placeholder="Full Name"></div><div class="form-group"><input type="tel" id="newCustMobile" placeholder="10-digit Mobile" maxlength="10"></div><div class="form-group"><input type="text" id="newCustAddress" placeholder="Address"></div><div class="form-group"><select id="newCustVariant"><option value="SD">SD</option><option value="HD">HD</option></select></div><button class="btn btn-gold" onclick="submitNewConnection('${type}')">Submit</button>`; openModal('newConnModal'); }
+        function submitNewConnection(type) { const name = document.getElementById('newCustName').value.trim(); const mobile = document.getElementById('newCustMobile').value.trim(); const address = document.getElementById('newCustAddress').value.trim(); const variant = document.getElementById('newCustVariant').value; if (!name || !mobile || !address) { showToast('❌ All fields required', true); return; } if (!/^\d{10}$/.test(mobile)) { showToast('❌ Invalid mobile', true); return; } const vc = generateVC(); const connections = getConnections(); connections[vc] = { customerName: name, mobile, address, variant, connectionType: type, currentPlan: 'Custom Choice Pack', basePrice: variant === 'HD' ? 110 : 99, status: 'pending_installation', installDate: null, lastRecharge: null, expiryDate: null, loyaltyPoints: 0, referralCode: generateReferralCode(vc), transactions: [], createdAt: new Date().toISOString() }; saveConnections(connections); closeModal('newConnModal'); showToast(`✅ Request submitted! VC: ${vc}`); alert(`Your VC: ${vc}\nReferral: ${generateReferralCode(vc)}`); }
+
+        function openProfile(vc) { const conn = getConnections()[vc]; if (!conn) return; const existingModal = document.getElementById('profileModal'); if (existingModal) existingModal.remove(); const html = `<div class="modal-overlay" style="display:flex;" id="profileModal"><div class="modal"><button class="modal-close-btn" data-close="profileModal">✕</button><h3>👤 Edit Profile</h3><div class="form-group"><label>Name</label><input id="profName" value="${conn.customerName||''}"></div><div class="form-group"><label>Mobile</label><input id="profMobile" value="${conn.mobile||''}" maxlength="10"></div><div class="form-group"><label>Address</label><input id="profAddress" value="${conn.address||''}"></div><button class="btn btn-primary" onclick="saveProfile('${vc}')">💾 Save</button></div></div>`; document.body.insertAdjacentHTML('beforeend', html); }
+        function saveProfile(vc) { const connections = getConnections(); if (connections[vc]) { connections[vc].customerName = document.getElementById('profName').value.trim(); connections[vc].mobile = document.getElementById('profMobile').value.trim(); connections[vc].address = document.getElementById('profAddress').value.trim(); saveConnections(connections); closeModal('profileModal'); showToast('✅ Profile updated'); if (document.getElementById('dashboardModal').style.display === 'flex') showDashboard(vc, connections[vc]); } }
+
+        function openTransactionHistory(vc) { const conn = getConnections()[vc]; const txns = conn?.transactions || []; const existingModal = document.getElementById('txnModal'); if (existingModal) existingModal.remove(); const htmlRows = txns.length === 0 ? '<p style="text-align:center;padding:20px;">No transactions yet.</p>' : txns.slice().reverse().map(t => `<div class="connection-row"><div>📅 ${new Date(t.date).toLocaleDateString('en-IN')}</div><div>${t.type==='recharge'?'🔋 Recharge':'✏️ Plan Change'}</div><div><strong>₹${t.amount}</strong></div><div style="font-size:0.75rem;color:var(--text-muted);">${t.plan||''}</div></div>`).join(''); const modal = document.createElement('div'); modal.className = 'modal-overlay'; modal.style.display = 'flex'; modal.id = 'txnModal'; modal.innerHTML = `<div class="modal wide"><button class="modal-close-btn" data-close="txnModal">✕</button><h3>📜 History</h3>${htmlRows}</div>`; document.body.appendChild(modal); }
+        function openLoyaltyRedeem(vc) { const conn = getConnections()[vc]; const pts = conn?.loyaltyPoints || 0; const existingModal = document.getElementById('redeemModal'); if (existingModal) existingModal.remove(); const html = `<div class="modal-overlay" style="display:flex;" id="redeemModal"><div class="modal"><button class="modal-close-btn" data-close="redeemModal">✕</button><h3>🎁 Redeem Points</h3><p style="text-align:center;font-size:1.2rem;">You have <strong style="color:var(--gold);">⭐ ${pts} points</strong></p><p style="text-align:center;color:var(--text-muted);">100 points = ₹10 discount</p><button class="btn btn-gold" style="width:100%;" onclick="redeemPoints('${vc}', 100)" ${pts<100?'disabled':''}>Redeem 100 pts (₹10 off)</button>${pts>=200?`<button class="btn btn-gold" style="width:100%;margin-top:8px;" onclick="redeemPoints('${vc}', 200)">Redeem 200 pts (₹20 off)</button>`:''}${pts>=500?`<button class="btn btn-gold" style="width:100%;margin-top:8px;" onclick="redeemPoints('${vc}', 500)">Redeem 500 pts (₹50 off)</button>`:''}</div></div>`; document.body.insertAdjacentHTML('beforeend', html); }
+        function redeemPoints(vc, pts) { const connections = getConnections(); if (connections[vc] && connections[vc].loyaltyPoints >= pts) { connections[vc].loyaltyPoints -= pts; connections[vc].discount = (connections[vc].discount || 0) + (pts / 10); if (!connections[vc].transactions) connections[vc].transactions = []; connections[vc].transactions.push({ date: new Date().toISOString(), amount: 0, type: 'redeem', plan: `Redeemed ${pts} pts` }); saveConnections(connections); closeModal('redeemModal'); showToast(`✅ Redeemed ₹${pts/10} discount`); if (document.getElementById('dashboardModal').style.display === 'flex') showDashboard(vc, connections[vc]); } else { showToast('❌ Insufficient points', true); } }
+
+        // ═══════════ LIVE TV CHANNELS WITH YOUTUBE LIVE IDs ═══════════
+        const FREE_CHANNELS = [
+            { id: 'dd-national', name: 'DD National', icon: '📺', category: 'entertainment', lang: 'Hindi', nowPlaying: 'Krishi Darshan', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Krishi Darshan' }, { time: '09:00', show: 'News Bulletin' }, { time: '10:00', show: 'Classic Serials' }] },
+            { id: 'dd-news', name: 'DD News', icon: '📰', category: 'news', lang: 'Hindi', nowPlaying: 'News Hour', youtubeLiveId: 'uobGgWq2Wm4',
+                epg: [{ time: '08:00', show: 'Morning News' }, { time: '09:00', show: 'News Hour' }, { time: '10:00', show: 'Special Report' }] },
+            { id: 'dd-bharati', name: 'DD Bharati', icon: '🎭', category: 'entertainment', lang: 'Hindi', nowPlaying: 'Classical Music', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Yoga Session' }, { time: '09:00', show: 'Classical Music' }, { time: '10:30', show: 'Dance Performance' }] },
+            { id: 'dd-sports', name: 'DD Sports', icon: '⚽', category: 'sports', lang: 'Hindi', nowPlaying: 'Sports Highlights', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Morning Fitness' }, { time: '09:00', show: 'Sports Highlights' }, { time: '10:00', show: 'Cricket Classics' }] },
+            { id: 'dd-kisan', name: 'DD Kisan', icon: '🌾', category: 'infotainment', lang: 'Hindi', nowPlaying: 'Mandi Bhav', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Mandi Bhav' }, { time: '09:00', show: 'Farming Tips' }, { time: '10:00', show: 'Weather Update' }] },
+            { id: 'aastha', name: 'Aastha TV', icon: '🕉️', category: 'devotional', lang: 'Hindi', nowPlaying: 'Bhajan Sandhya', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Morning Aarti' }, { time: '09:00', show: 'Bhajan Sandhya' }, { time: '10:00', show: 'Spiritual Discourse' }] },
+            { id: 'sanskar', name: 'Sanskar TV', icon: '🙏', category: 'devotional', lang: 'Hindi', nowPlaying: 'Ram Katha', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Yoga & Meditation' }, { time: '09:00', show: 'Ram Katha' }, { time: '10:30', show: 'Bhagavad Gita' }] },
+            { id: 'dd-retro', name: 'DD Retro', icon: '🎬', category: 'entertainment', lang: 'Hindi', nowPlaying: 'Classic TV Shows', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Malgudi Days' }, { time: '09:00', show: 'Classic TV Shows' }, { time: '10:00', show: 'Vintage Cinema' }] },
+            { id: 'gyan-darshan', name: 'Gyan Darshan', icon: '📚', category: 'education', lang: 'Multi', nowPlaying: 'Educational Program', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Science Today' }, { time: '09:00', show: 'Educational Program' }, { time: '10:00', show: 'History Series' }] },
+            { id: 'dd-urdu', name: 'DD Urdu', icon: '📡', category: 'regional', lang: 'Urdu', nowPlaying: 'Urdu News', youtubeLiveId: null,
+                epg: [{ time: '08:00', show: 'Urdu News' }, { time: '09:00', show: 'Cultural Show' }, { time: '10:00', show: 'Poetry Session' }] },
+            { id: 'aaj-tak', name: 'Aaj Tak', icon: '📢', category: 'news', lang: 'Hindi', nowPlaying: 'Breaking News', youtubeLiveId: 'SKx5K7u-0zE',
+                epg: [{ time: '08:00', show: 'Morning News' }, { time: '09:00', show: 'Special Report' }, { time: '10:00', show: 'Prime Time' }] },
+            { id: 'india-tv', name: 'India TV', icon: '🗞️', category: 'news', lang: 'Hindi', nowPlaying: 'Superfast News', youtubeLiveId: '9sYJwM6wGfA',
+                epg: [{ time: '08:00', show: 'India TV Live' }, { time: '09:00', show: 'News Bulletin' }, { time: '10:00', show: 'Debate' }] },
+        ];
+
+        const CATEGORIES = [
+            { id: 'all', label: '📋 All Channels' }, { id: 'entertainment', label: '🎬 Entertainment' }, { id: 'news', label: '📰 News' },
+            { id: 'devotional', label: '🙏 Devotional' }, { id: 'sports', label: '⚽ Sports' }, { id: 'music', label: '🎵 Music' },
+            { id: 'regional', label: '🌍 Regional' }, { id: 'education', label: '📚 Education' }, { id: 'infotainment', label: '🌾 Infotainment' },
+            { id: 'lifestyle', label: '🧘 Lifestyle' },
+        ];
+
+        let currentLiveTVCat = 'all';
+        let currentPlayingChannel = null;
+
+        function renderLiveTVGrid(vcNumber) {
+            const catContainer = document.getElementById('liveTVCategories');
+            const gridContainer = document.getElementById('liveTVGrid');
+            const isLoggedIn = !!vcNumber && !!getConnections()[vcNumber];
+            const favorites = getUserFavorites();
+            catContainer.innerHTML = CATEGORIES.map(c => `<button class="category-tab ${c.id === currentLiveTVCat ? 'active' : ''}" onclick="filterLiveTV('${c.id}')">${c.label}</button>`).join('');
+            let channels = FREE_CHANNELS;
+            if (currentLiveTVCat !== 'all') channels = channels.filter(ch => ch.category === currentLiveTVCat);
+            const displayChannels = isLoggedIn ? channels : channels.slice(0, 6);
+            gridContainer.innerHTML = displayChannels.map(ch => {
+                const isFav = favorites.includes(ch.id);
+                return `<div class="channel-card" onclick="${isLoggedIn ? `openLiveTVPlayer('${ch.id}')` : `openLoginModal()`}">
+                    ${isLoggedIn ? '<div class="ch-live-dot"></div>' : ''}
+                    <div class="ch-icon">${ch.icon}</div>
+                    <div class="ch-name">${ch.name}</div>
+                    <div class="ch-lang">${ch.lang}</div>
+                    <div class="ch-now">▶ ${ch.nowPlaying}</div>
+                    ${isFav ? '<span class="favorites-tag">⭐ Favorite</span>' : ''}
+                    ${isLoggedIn ? `<button class="btn btn-xs btn-outline" style="margin-top:6px;" onclick="event.stopPropagation();toggleFavorite('${ch.id}')">${isFav?'❤️ Remove':'🤍 Add'}</button>` : ''}
+                </div>`;
+            }).join('');
+            if (!isLoggedIn && channels.length > 6) {
+                gridContainer.innerHTML += `<div class="channel-card" style="display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;" onclick="openLoginModal()"><div style="font-size:3rem;">🔒</div><div class="ch-name">+${channels.length - 6} More</div><div class="ch-lang">Login to unlock</div></div>`;
+            }
+            if (displayChannels.length === 0) gridContainer.innerHTML = '<p style="text-align:center;grid-column:1/-1;padding:40px;color:var(--text-muted);">No channels in this category yet.</p>';
+        }
+
+        function filterLiveTV(catId) { currentLiveTVCat = catId; renderLiveTVGrid(getCurrentUser()); }
+        function toggleFavorite(chId) { let favs = getUserFavorites(); if (favs.includes(chId)) { favs = favs.filter(f => f !== chId); showToast('💔 Removed from favorites'); } else { favs.push(chId); showToast('❤️ Added to favorites!'); } saveUserFavorites(favs); renderLiveTVGrid(getCurrentUser()); }
+
+        function openLiveTVPlayer(chId) {
+            const channel = FREE_CHANNELS.find(ch => ch.id === chId);
+            if (!channel) return;
+            currentPlayingChannel = channel;
+            const content = document.getElementById('liveTVPlayerContent');
+            const useYouTube = channel.youtubeLiveId ? true : false;
+            let playerHtml = '';
+            if (useYouTube) {
+                playerHtml = `
+                <div class="video-player-area" style="position:relative;">
+                    <iframe src="https://www.youtube.com/embed/${channel.youtubeLiveId}?autoplay=1&mute=1&controls=1&modestbranding=1&rel=0" 
+                            allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>
+                    <div style="position:absolute; top:10px; left:10px; background:#ef4444; color:#fff; padding:4px 12px; border-radius:6px; font-weight:700; font-size:0.8rem; letter-spacing:1px; z-index:2; animation:dotPulse 2s ease-in-out infinite;">🔴 LIVE</div>
+                </div>`;
+            } else {
+                const sampleVideoUrl = "https://www.w3schools.com/html/mov_bbb.mp4";
+                playerHtml = `
+                <div class="video-player-area" id="playerContainer" style="position:relative;">
+                    <video id="simulatedLiveVideo" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;" oncanplay="document.getElementById('liveBadge').style.display='block';">
+                        <source src="${sampleVideoUrl}" type="video/mp4">
+                    </video>
+                    <div id="liveBadge" style="display:none; position:absolute; top:10px; left:10px; background:#ef4444; color:#fff; padding:4px 12px; border-radius:6px; font-weight:700; font-size:0.8rem; letter-spacing:1px; z-index:2; animation:dotPulse 2s ease-in-out infinite;">🔴 LIVE</div>
+                    <div id="glitchOverlay" style="position:absolute; top:0;left:0;width:100%;height:100%; pointer-events:none; opacity:0; background: linear-gradient(0deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.08) 50%); animation: glitchEffect 0.15s infinite;"></div>
+                </div>`;
+            }
+            content.innerHTML = `
+                <div style="text-align:center;">
+                    <h2>${channel.icon} ${channel.name}</h2>
+                    <p style="color:var(--gold);">🔴 LIVE — ${channel.nowPlaying}</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Language: ${channel.lang} | Category: ${channel.category}</p>
+                </div>
+                ${playerHtml}
+                <h4 style="margin-top:12px;">📅 Today's Schedule (EPG)</h4>
+                <div class="epg-row">
+                    ${channel.epg.map((ep, i) => `<div class="epg-item ${i===1?'active':''}"><div class="show-time">${ep.time}</div><div class="show-name">${ep.show}</div></div>`).join('')}
+                </div>
+                <div style="text-align:center;margin-top:12px;">
+                    <button class="btn btn-outline btn-sm" onclick="toggleFavorite('${channel.id}');openLiveTVPlayer('${channel.id}');">${getUserFavorites().includes(channel.id)?'❤️ Remove Favorite':'🤍 Add to Favorites'}</button>
+                    <button class="btn btn-primary btn-sm" onclick="changeChannel('prev')">⬅ Prev</button>
+                    <button class="btn btn-primary btn-sm" onclick="changeChannel('next')">Next ➡</button>
+                </div>`;
+            openModal('liveTVModal');
+            if (!useYouTube) {
+                const videoEl = document.getElementById('simulatedLiveVideo');
+                if (videoEl) videoEl.play().catch(e => console.log('Autoplay prevented'));
+            }
+        }
+
+        function changeChannel(direction) {
+            if (!currentPlayingChannel) return;
+            const allChannels = FREE_CHANNELS;
+            const currentIdx = allChannels.findIndex(ch => ch.id === currentPlayingChannel.id);
+            const newIdx = direction === 'next' ? (currentIdx + 1) % allChannels.length : (currentIdx - 1 + allChannels.length) % allChannels.length;
+            openLiveTVPlayer(allChannels[newIdx].id);
+        }
+
+        function openInstallerPortal() { document.getElementById('installerCode').value = ''; document.getElementById('installerPanel').style.display = 'none'; openModal('installerModal'); }
+        function installerLogin() { const code = document.getElementById('installerCode').value.trim().toUpperCase(); if (!['NOVAINSTALL2024', 'INSTALLER123', 'ADMIN2024', 'ARITRAKHAN'].includes(code)) { showToast('❌ Invalid installer code', true); return; } showInstallerPanel(); }
+        function showInstallerPanel() {
+            const connections = getConnections(); const all = Object.entries(connections);
+            const panel = document.getElementById('installerPanel');
+            panel.innerHTML = `<div class="cards-grid" style="grid-template-columns:repeat(4,1fr);"><div class="stat-card"><div class="stat-value">${all.length}</div><div class="stat-label">Total</div></div><div class="stat-card"><div class="stat-value" style="color:#10b981;">${all.filter(([,c])=>determineStatus(c)==='activated').length}</div><div class="stat-label">Active</div></div><div class="stat-card"><div class="stat-value" style="color:#f59e0b;">${all.filter(([,c])=>c.status==='pending_installation').length}</div><div class="stat-label">Pending</div></div><div class="stat-card"><div class="stat-value" style="color:#ef4444;">${all.filter(([,c])=>determineStatus(c)==='deactivated'||determineStatus(c)==='expired').length}</div><div class="stat-label">Inactive</div></div></div>
+            <input class="search-input" id="installerSearch" placeholder="Search..." oninput="filterInstaller()" style="margin:10px 0;">
+            <div id="installerList">${all.map(([vc,c])=>{ const st = determineStatus(c); return `<div class="connection-row" data-search="${vc} ${c.customerName||''} ${c.mobile||''}"><div>${st==='activated'?'🟢':st==='expired'?'🟡':c.status==='pending_installation'?'🔵':'🔴'} ${vc} - ${c.customerName||'N/A'}</div><div style="display:flex;gap:6px;">${c.status==='pending_installation'?`<button class="btn btn-success btn-xs" onclick="activateConnection('${vc}')">✅ Activate</button>`:''}<button class="btn btn-outline btn-xs" onclick="viewDetail('${vc}')">📋</button><button class="btn btn-danger btn-xs" onclick="deleteConnection('${vc}')">🗑</button></div></div>`; }).join('')}</div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-primary btn-sm" onclick="addManualConnection()">➕ Add Manual</button><button class="btn btn-outline btn-sm" onclick="exportCSV()">📥 Export CSV</button><button class="btn btn-outline btn-sm" onclick="bulkActivate()">⚡ Bulk Activate</button></div>`;
+            panel.style.display = 'block';
+        }
+        function filterInstaller() { const q = document.getElementById('installerSearch').value.toLowerCase(); document.querySelectorAll('#installerList .connection-row').forEach(r => r.style.display = r.dataset.search.toLowerCase().includes(q) ? 'flex' : 'none'); }
+        function activateConnection(vc) { const connections = getConnections(); if (connections[vc]) { const now = new Date(); const exp = new Date(now); exp.setDate(exp.getDate()+30); connections[vc].status='activated'; connections[vc].installDate=now.toISOString().split('T')[0]; connections[vc].lastRecharge=now.toISOString().split('T')[0]; connections[vc].expiryDate=exp.toISOString().split('T')[0]; connections[vc].referralCode=connections[vc].referralCode||generateReferralCode(vc); saveConnections(connections); showToast(`✅ ${vc} activated`); showInstallerPanel(); } }
+        function bulkActivate() { const connections = getConnections(); const now = new Date(); const exp = new Date(now); exp.setDate(exp.getDate()+30); let count=0; Object.entries(connections).forEach(([vc,c])=>{ if(c.status==='pending_installation'){ c.status='activated'; c.installDate=now.toISOString().split('T')[0]; c.lastRecharge=now.toISOString().split('T')[0]; c.expiryDate=exp.toISOString().split('T')[0]; c.referralCode=c.referralCode||generateReferralCode(vc); count++; } }); saveConnections(connections); showToast(`✅ ${count} activated`); showInstallerPanel(); }
+        function viewDetail(vc) { const c = getConnections()[vc]; if(c) alert(`VC: ${vc}\nName: ${c.customerName}\nMobile: ${c.mobile}\nPlan: ${c.currentPlan}\nExpiry: ${c.expiryDate}\nStatus: ${determineStatus(c)}`); }
+        function deleteConnection(vc) { if(confirm(`Delete ${vc}?`)){ const connections = getConnections(); delete connections[vc]; saveConnections(connections); showToast('Deleted'); showInstallerPanel(); } }
+        function addManualConnection() { const vc = generateVC(); const name = prompt('Name:'); if(!name) return; const mobile = prompt('Mobile:'); if(!mobile||mobile.length!==10) return; const connections = getConnections(); const now = new Date(); const exp = new Date(now); exp.setDate(exp.getDate()+30); connections[vc]={ customerName:name, mobile, address:'Manual', variant:'HD', connectionType:'Manual', currentPlan:'Custom Choice Pack', basePrice:110, status:'activated', installDate:now.toISOString().split('T')[0], lastRecharge:now.toISOString().split('T')[0], expiryDate:exp.toISOString().split('T')[0], loyaltyPoints:0, referralCode:generateReferralCode(vc), transactions:[] }; saveConnections(connections); showToast(`✅ ${vc} created`); showInstallerPanel(); }
+        function exportCSV() { const connections = getConnections(); const csv = 'VC,Name,Mobile,Plan,Variant,Status,Expiry\n'+Object.entries(connections).map(([vc,c])=>`${vc},"${c.customerName||''}","${c.mobile||''}","${c.currentPlan||''}","${c.variant||''}",${determineStatus(c)},${c.expiryDate||''}`).join('\n'); const blob = new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='NovaD2H_Connections.csv'; a.click(); showToast('📥 Exported'); }
+
+        function toggleFAQ(header) { const content = header.nextElementSibling; if(content){ const isOpen = content.style.display==='block'; content.style.display = isOpen?'none':'block'; header.textContent = header.textContent.replace(isOpen?'▲':'▼', isOpen?'▼':'▲'); } }
+
+        function updateLeaderboard() {
+            const connections = getConnections();
+            const ranked = Object.entries(connections).filter(([,c])=>(c.loyaltyPoints||0)>0).sort((a,b)=>(b[1].loyaltyPoints||0)-(a[1].loyaltyPoints||0)).slice(0,5);
+            const container = document.getElementById('leaderboardContent');
+            container.innerHTML = ranked.length===0?'<p style="text-align:center;grid-column:1/-1;">No referrals yet</p>':
+            ranked.map(([vc,c],i)=>`<div class="card" style="text-align:center;"><div style="font-size:2rem;">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]||'⭐'}</div><h3>${c.customerName||'User '+vc.slice(-4)}</h3><p style="font-size:1.5rem;font-weight:900;color:var(--gold);">⭐ ${c.loyaltyPoints||0}</p><p style="font-size:0.7rem;color:var(--text-muted);">Referral: ${c.referralCode||'N/A'}</p></div>`).join('');
+        }
+        updateLeaderboard();
+
+        function initLiveTV() { const currentUser = getCurrentUser(); const conn = currentUser?getConnections()[currentUser]:null; renderLiveTVGrid(conn && determineStatus(conn)==='activated'?currentUser:null); }
+        initLiveTV();
+
+        (function() {
+            const connections = getConnections();
+            if (Object.keys(connections).length === 0) {
+                const now = new Date(); const exp = new Date(now); exp.setDate(exp.getDate()+30);
+                connections['123456789012'] = { customerName:'Demo User', mobile:'9876543210', address:'123 Demo Street, Mumbai', variant:'HD', connectionType:'Smart Install', currentPlan:'Custom Choice Pack', basePrice:110, status:'activated', installDate:'2024-01-15', lastRecharge:now.toISOString().split('T')[0], expiryDate:exp.toISOString().split('T')[0], loyaltyPoints:125, referralCode:'NOVA-1234-9012', transactions:[{ date:now.toISOString(), amount:110, type:'recharge', plan:'Custom Choice Pack' }], createdAt:'2024-01-10T00:00:00Z' };
+                saveConnections(connections);
+            }
+        })();
+        console.log('✅ NovaD2H Ready | Demo VC: 123456789012 | Live TV with YouTube streams active');
+    </script>
+</body>
+</html>
